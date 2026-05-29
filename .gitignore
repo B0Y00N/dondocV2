@@ -13,6 +13,11 @@ dist-ssr
 *.local
 package-lock.json
 
+# Environment variables (secrets)
+.env
+.env.*
+!.env.example
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
@@ -23,3 +28,9 @@ package-lock.json
 *.njsproj
 *.sln
 *.sw?
+
+# Claude Code local settings
+.claude/
+
+# Local JSON database
+db.json
