@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python3 -c ':*)",
+      "Bash(python3)",
+      "Bash(npm run *)",
+      "Bash(python3 -c \"import json,sys; d=json.load\\(sys.stdin\\); print\\('users:', json.dumps\\(d.get\\('users', []\\), ensure_ascii=False, indent=2\\)\\); print\\('summaries keys:', list\\(d.get\\('summaries', [{}]\\)[0].keys\\(\\)\\) if d.get\\('summaries'\\) else 'no summaries'\\); print\\('records sample:', json.dumps\\(d.get\\('records', [{}]\\)[:2], ensure_ascii=False, indent=2\\) if d.get\\('records'\\) else 'no records'\\)\")",
+      "Bash(python3 -c \"import json,sys; d=json.load\\(sys.stdin\\); today_recs=[r for r in d.get\\('records',[]\\) if r.get\\('date'\\)=='2026-05-29']; print\\('today records:', json.dumps\\(today_recs, ensure_ascii=False, indent=2\\)\\); print\\('all summaries:', json.dumps\\(d.get\\('summaries',[]\\), ensure_ascii=False, indent=2\\)\\)\")",
+      "Bash(curl -s \"http://localhost:3000/records/summary?month=2026-05\")"
+    ]
+  }
+}
