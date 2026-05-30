@@ -35,10 +35,10 @@
       "date": "2026-05-03",
       "type": "EXPENSE",
       "category": {
-        "id": 11,
+        "id": 6,
         "name": "식비"
       },
-      "categoryId": 11,
+      "categoryId": 6,
       "amount": 15000,
       "description": "점심 김밥"
     },
@@ -49,10 +49,10 @@
       "date": "2026-05-03",
       "type": "EXPENSE",
       "category": {
-        "id": 12,
+        "id": 7,
         "name": "교통비"
       },
-      "categoryId": 12,
+      "categoryId": 7,
       "amount": 1500,
       "description": "버스"
     },
@@ -63,10 +63,10 @@
       "date": "2026-05-05",
       "type": "EXPENSE",
       "category": {
-        "id": 11,
+        "id": 6,
         "name": "식비"
       },
-      "categoryId": 11,
+      "categoryId": 6,
       "amount": 32000,
       "description": "저녁 삼겹살"
     },
@@ -77,10 +77,10 @@
       "date": "2026-05-07",
       "type": "EXPENSE",
       "category": {
-        "id": 13,
+        "id": 8,
         "name": "쇼핑"
       },
-      "categoryId": 13,
+      "categoryId": 8,
       "amount": 45000,
       "description": "옷 구매"
     },
@@ -91,10 +91,10 @@
       "date": "2026-05-10",
       "type": "EXPENSE",
       "category": {
-        "id": 14,
+        "id": 9,
         "name": "문화생활"
       },
-      "categoryId": 14,
+      "categoryId": 9,
       "amount": 13000,
       "description": "영화"
     },
@@ -105,10 +105,10 @@
       "date": "2026-05-12",
       "type": "EXPENSE",
       "category": {
-        "id": 11,
+        "id": 6,
         "name": "식비"
       },
-      "categoryId": 11,
+      "categoryId": 6,
       "amount": 8500,
       "description": "편의점"
     },
@@ -133,10 +133,10 @@
       "date": "2026-05-17",
       "type": "EXPENSE",
       "category": {
-        "id": 11,
+        "id": 6,
         "name": "식비"
       },
-      "categoryId": 11,
+      "categoryId": 6,
       "amount": 25000,
       "description": "저녁 외식"
     },
@@ -147,10 +147,10 @@
       "date": "2026-05-20",
       "type": "EXPENSE",
       "category": {
-        "id": 17,
+        "id": 12,
         "name": "주거/통신"
       },
-      "categoryId": 17,
+      "categoryId": 12,
       "amount": 50000,
       "description": "통신비"
     },
@@ -161,10 +161,10 @@
       "date": "2026-05-22",
       "type": "EXPENSE",
       "category": {
-        "id": 12,
+        "id": 7,
         "name": "교통비"
       },
-      "categoryId": 12,
+      "categoryId": 7,
       "amount": 3000,
       "description": "지하철"
     },
@@ -175,10 +175,10 @@
       "date": "2026-05-24",
       "type": "EXPENSE",
       "category": {
-        "id": 11,
+        "id": 6,
         "name": "식비"
       },
-      "categoryId": 11,
+      "categoryId": 6,
       "amount": 18000,
       "description": "카페 + 점심"
     },
@@ -189,10 +189,10 @@
       "date": "2026-05-26",
       "type": "EXPENSE",
       "category": {
-        "id": 15,
+        "id": 10,
         "name": "의료/건강"
       },
-      "categoryId": 15,
+      "categoryId": 10,
       "amount": 12000,
       "description": "약국"
     },
@@ -203,10 +203,10 @@
       "date": "2026-05-28",
       "type": "EXPENSE",
       "category": {
-        "id": 11,
+        "id": 6,
         "name": "식비"
       },
-      "categoryId": 11,
+      "categoryId": 6,
       "amount": 22000,
       "description": "마트 장보기"
     },
@@ -217,10 +217,10 @@
       "date": "2026-05-29",
       "type": "EXPENSE",
       "category": {
-        "id": 12,
+        "id": 7,
         "name": "교통비"
       },
-      "categoryId": 12,
+      "categoryId": 7,
       "amount": 2500,
       "description": "버스"
     },
@@ -245,10 +245,10 @@
       "date": "2026-04-04",
       "type": "EXPENSE",
       "category": {
-        "id": 11,
+        "id": 6,
         "name": "식비"
       },
-      "categoryId": 11,
+      "categoryId": 6,
       "amount": 8500,
       "description": "편의점"
     },
@@ -259,10 +259,10 @@
       "date": "2026-04-05",
       "type": "EXPENSE",
       "category": {
-        "id": 14,
+        "id": 9,
         "name": "문화생활"
       },
-      "categoryId": 14,
+      "categoryId": 9,
       "amount": 13000,
       "description": "영화"
     },
@@ -273,10 +273,10 @@
       "date": "2026-04-06",
       "type": "EXPENSE",
       "category": {
-        "id": 11,
+        "id": 6,
         "name": "식비"
       },
-      "categoryId": 11,
+      "categoryId": 6,
       "amount": 32000,
       "description": "저녁 삼겹살"
     },
@@ -287,10 +287,10 @@
       "date": "2026-04-06",
       "type": "EXPENSE",
       "category": {
-        "id": 13,
+        "id": 8,
         "name": "쇼핑"
       },
-      "categoryId": 13,
+      "categoryId": 8,
       "amount": 45000,
       "description": "옷 구매"
     },
@@ -334,7 +334,7 @@
       "expenseDetail": [
         {
           "category": {
-            "id": 11,
+            "id": 6,
             "name": "식비"
           },
           "amount": 120500,
@@ -342,7 +342,7 @@
         },
         {
           "category": {
-            "id": 12,
+            "id": 7,
             "name": "교통비"
           },
           "amount": 7000,
@@ -350,7 +350,7 @@
         },
         {
           "category": {
-            "id": 13,
+            "id": 8,
             "name": "쇼핑"
           },
           "amount": 45000,
@@ -358,7 +358,7 @@
         },
         {
           "category": {
-            "id": 14,
+            "id": 9,
             "name": "문화생활"
           },
           "amount": 13000,
@@ -366,7 +366,7 @@
         },
         {
           "category": {
-            "id": 15,
+            "id": 10,
             "name": "의료/건강"
           },
           "amount": 12000,
@@ -374,7 +374,7 @@
         },
         {
           "category": {
-            "id": 17,
+            "id": 12,
             "name": "주거/통신"
           },
           "amount": 50000,
@@ -406,7 +406,7 @@
       "expenseDetail": [
         {
           "category": {
-            "id": 11,
+            "id": 6,
             "name": "식비"
           },
           "amount": 350000,
@@ -414,7 +414,7 @@
         },
         {
           "category": {
-            "id": 12,
+            "id": 7,
             "name": "교통비"
           },
           "amount": 80000,
@@ -422,7 +422,7 @@
         },
         {
           "category": {
-            "id": 13,
+            "id": 8,
             "name": "쇼핑"
           },
           "amount": 200000,
@@ -430,7 +430,7 @@
         },
         {
           "category": {
-            "id": 14,
+            "id": 9,
             "name": "문화생활"
           },
           "amount": 70000,
@@ -438,7 +438,7 @@
         },
         {
           "category": {
-            "id": 17,
+            "id": 12,
             "name": "주거/통신"
           },
           "amount": 150000,
@@ -634,7 +634,7 @@
       "categoryExpenses": [
         {
           "category": {
-            "id": 11,
+            "id": 6,
             "name": "식비"
           },
           "amount": 120500,
@@ -642,7 +642,7 @@
         },
         {
           "category": {
-            "id": 13,
+            "id": 8,
             "name": "쇼핑"
           },
           "amount": 45000,
@@ -650,7 +650,7 @@
         },
         {
           "category": {
-            "id": 17,
+            "id": 12,
             "name": "주거/통신"
           },
           "amount": 50000,
@@ -658,7 +658,7 @@
         },
         {
           "category": {
-            "id": 14,
+            "id": 9,
             "name": "문화생활"
           },
           "amount": 13000,
@@ -666,7 +666,7 @@
         },
         {
           "category": {
-            "id": 15,
+            "id": 10,
             "name": "의료/건강"
           },
           "amount": 12000,
@@ -674,7 +674,7 @@
         },
         {
           "category": {
-            "id": 12,
+            "id": 7,
             "name": "교통비"
           },
           "amount": 7000,
@@ -696,7 +696,7 @@
       "categoryExpenses": [
         {
           "category": {
-            "id": 11,
+            "id": 6,
             "name": "식비"
           },
           "amount": 350000,
@@ -704,7 +704,7 @@
         },
         {
           "category": {
-            "id": 13,
+            "id": 8,
             "name": "쇼핑"
           },
           "amount": 200000,
@@ -712,7 +712,7 @@
         },
         {
           "category": {
-            "id": 17,
+            "id": 12,
             "name": "주거/통신"
           },
           "amount": 150000,
@@ -720,7 +720,7 @@
         },
         {
           "category": {
-            "id": 12,
+            "id": 7,
             "name": "교통비"
           },
           "amount": 80000,
@@ -728,7 +728,7 @@
         },
         {
           "category": {
-            "id": 14,
+            "id": 9,
             "name": "문화생활"
           },
           "amount": 70000,
