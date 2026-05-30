@@ -762,7 +762,19 @@
     },
     {
       "name": "11",
-      "id": 3
+      "id": 3,
+      "farmName": "이게머에영",
+      "memberCount": 1,
+      "joined": true,
+      "createdAt": "2026-05-11",
+      "members": [
+        {
+          "userId": 1,
+          "name": "테스트유저",
+          "currentPigLevel": 7,
+          "currentHouseLevel": 3
+        }
+      ]
     }
   ]
 }
