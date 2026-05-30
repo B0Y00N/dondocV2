@@ -1,4 +1,4 @@
-﻿<script setup>
+<script setup>
 import { ref, computed, onMounted, watch } from 'vue';
 import { useBudgetStore } from '../stores/useBudgetStore.js';
 import { usePigSystem } from '../composables/usePigSystem.js';
@@ -63,8 +63,9 @@ const groupedRecords = computed(() => {
     .sort(([a], [b]) => b.localeCompare(a))
     .map(([date, records]) => ({
       date,
-      records: records.sort(
-        (a, b) => new Date(b.createdAt) - new Date(a.createdAt),
+      records: records.sort((a, b) => (b.createdAt && a.createdAt) 
+        ? new Date(b.createdAt) - new Date(a.createdAt)
+        : (b.id - a.id)
       ),
       totalIncome: records
         .filter((r) => r.type === 'INCOME')
