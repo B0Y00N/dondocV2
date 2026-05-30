@@ -64,6 +64,7 @@ async function handleSubmit() {
   const payload = {
     type: form.value.type,
     date: form.value.date,
+    yearMonth: form.value.date.slice(0, 7),
     categoryId: form.value.categoryId,
     amount: Number(form.value.amount),
     description: form.value.description,
