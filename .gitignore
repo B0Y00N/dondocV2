@@ -28,9 +28,6 @@ package-lock.json
 *.njsproj
 *.sln
 *.sw?
-# Local environment and data
-.env*
-db.json
-settings.*
-**/settings.*
+
+# Claude Code local settings
 .claude/

@@ -1,7 +1,6 @@
 <script setup>
 import { computed, ref, onMounted, watch } from 'vue';
-import { getDetail } from '../api/records.js';
-import { useAuthStore } from '../stores/useAuthStore.js';
+import { getDailySummary } from '../api/records.js';
 import { usePigSystem } from '../composables/usePigSystem.js';
 import PixelIcon from './PixelIcon.vue';
 
@@ -11,30 +10,22 @@ const props = defineProps({
 
 const emit = defineEmits(['update:selectedMonth']);
 
-const authStore = useAuthStore();
-const { getPigState } = usePigSystem();
+const { getPigStateByLevel } = usePigSystem();
 
-const records = ref([]);
+const dailySummaries = ref([]);
 
-async function loadRecords() {
+async function loadDailySummary() {
   try {
-    const res = await getDetail(props.selectedMonth);
-    const detail = res.data?.data;
-    records.value = Array.isArray(detail?.records) ? detail.records : (Array.isArray(detail) ? detail : (Array.isArray(res.data) ? res.data : []));
+    const res = await getDailySummary(props.selectedMonth);
+    dailySummaries.value = Array.isArray(res.data?.data) ? res.data.data : (Array.isArray(res.data) ? res.data : []);
   } catch (e) {
-    console.error('CalendarLog 레코드 조회 실패', e);
-    records.value = [];
+    console.error('CalendarLog 일별 통계 조회 실패', e);
+    dailySummaries.value = [];
   }
 }
 
-onMounted(loadRecords);
-watch(() => props.selectedMonth, loadRecords);
-
-const dailyBudget = computed(() => {
-  const user = authStore.currentUser;
-  if (!user) return 0;
-  return Math.round((user.monthlyIncome * user.targetExpenseRatio) / 100 / 30);
-});
+onMounted(loadDailySummary);
+watch(() => props.selectedMonth, loadDailySummary);
 
 const tooltip = ref(null); // 현재 호버된 day 데이터
 const tooltipPos = ref({}); // 툴팁 위치 (fixed 기준)
@@ -60,38 +51,26 @@ const calendarDays = computed(() => {
   const [year, month] = props.selectedMonth.split('-').map(Number);
   const firstDay = new Date(year, month - 1, 1);
   const lastDay = new Date(year, month, 0);
+  const today = new Date().toISOString().slice(0, 10);
 
-  // 날짜별 지출 맵
-  const expenseMap = {};
-  records.value
-    .filter((r) => r.type === 'EXPENSE')
-    .forEach((r) => {
-      expenseMap[r.date] = (expenseMap[r.date] || 0) + r.amount;
-    });
-
-  const incomeMap = {};
-  records.value
-    .filter((r) => r.type === 'INCOME')
-    .forEach((r) => {
-      incomeMap[r.date] = (incomeMap[r.date] || 0) + r.amount;
-    });
+  const summaryMap = {};
+  dailySummaries.value.forEach((s) => {
+    summaryMap[s.date] = s;
+  });
 
   const days = [];
 
-  // 앞 빈 칸
   for (let i = 0; i < firstDay.getDay(); i++) {
     days.push(null);
   }
 
-  // 실제 날짜
   for (let d = 1; d <= lastDay.getDate(); d++) {
     const dateStr = `${props.selectedMonth}-${String(d).padStart(2, '0')}`;
-    const expense = expenseMap[dateStr] || 0;
-    const income = incomeMap[dateStr] || 0;
-    const pigState =
-      expense > 0 ? getPigState(expense, dailyBudget.value) : null;
+    const summary = summaryMap[dateStr];
+    const expense = summary?.expense ?? 0;
+    const income = summary?.income ?? 0;
+    const pigState = summary?.pigLevel ? getPigStateByLevel(summary.pigLevel) : null;
 
-    const today = new Date().toISOString().slice(0, 10);
     days.push({
       day: d,
       dateStr,
