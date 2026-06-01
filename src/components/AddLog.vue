@@ -1,7 +1,8 @@
 ﻿<script setup>
-import { ref, computed, watch } from 'vue';
+import { ref, computed, watch, onMounted } from 'vue';
 import { useBudgetStore } from '../stores/useBudgetStore.js';
-import { INCOME_CATEGORIES, EXPENSE_CATEGORIES, getCategoryIconByName } from '../api/categories.js';
+import { useCategoryStore } from '../stores/useCategoryStore.js';
+import { getCategoryIconByName } from '../api/categories.js';
 import PixelIcon from './PixelIcon.vue';
 
 const props = defineProps({
@@ -10,6 +11,9 @@ const props = defineProps({
 
 const emit = defineEmits(['saved', 'cancel']);
 const store = useBudgetStore();
+const categoryStore = useCategoryStore();
+
+onMounted(() => categoryStore.fetchCategories());
 
 const form = ref({
   type: 'EXPENSE',
@@ -17,6 +21,7 @@ const form = ref({
   categoryId: null,
   amount: '',
   description: '',
+  memo: '',
 });
 
 watch(
@@ -29,6 +34,7 @@ watch(
         categoryId: rec.categoryId ?? rec.category?.id ?? null,
         amount: rec.amount,
         description: rec.description || '',
+        memo: rec.memo || '',
       };
     }
   },
@@ -36,7 +42,7 @@ watch(
 );
 
 const categories = computed(() =>
-  form.value.type === 'INCOME' ? INCOME_CATEGORIES : EXPENSE_CATEGORIES,
+  form.value.type === 'INCOME' ? categoryStore.incomeCategories : categoryStore.expenseCategories,
 );
 
 watch(
@@ -68,6 +74,7 @@ async function handleSubmit() {
     categoryId: form.value.categoryId,
     amount: Number(form.value.amount),
     description: form.value.description,
+    memo: form.value.memo,
   };
 
   try {
@@ -131,7 +138,7 @@ async function handleSubmit() {
               @click="form.categoryId = cat.id"
             >
               <PixelIcon
-                :icon="getCategoryIconByName(cat.name, form.type)"
+                :icon="getCategoryIconByName(cat.name)"
                 size="1.4rem"
               />
               <span>{{ cat.name }}</span>
@@ -157,13 +164,25 @@ async function handleSubmit() {
 
         <!-- 내용 -->
         <div class="form-group">
-          <label>내용 <span class="optional"></span></label>
+          <label>내용</label>
           <input
             type="text"
             v-model="form.description"
             class="form-input"
             placeholder="내용을 입력하세요"
             maxlength="50"
+          />
+        </div>
+
+        <!-- 메모 -->
+        <div class="form-group">
+          <label>메모 <span class="optional">(선택)</span></label>
+          <input
+            type="text"
+            v-model="form.memo"
+            class="form-input"
+            placeholder="추가 메모를 입력하세요"
+            maxlength="100"
           />
         </div>
 

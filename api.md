@@ -1,3 +1,51 @@
+0. 카테고리 목록 조회
+   **엔드포인트**
+
+GET http://localhost:8080/api/categories
+
+**Headers**
+
+userId: 1
+
+### Response
+
+| key    | 설명          | value 타입 | 옵션           | Nullable | 예시       |
+| ------ | ------------- | ---------- | -------------- | -------- | ---------- |
+| id     | 카테고리 ID   | Long       | -              | X        | 6          |
+| name   | 카테고리 이름 | String     | -              | X        | "식비"     |
+| type   | 거래 유형     | String     | INCOME/EXPENSE | X        | "EXPENSE"  |
+
+**Response Example**
+
+```json
+{
+  "success": true,
+  "data": [
+    { "id": 1, "name": "월급", "type": "INCOME" },
+    { "id": 2, "name": "부수입", "type": "INCOME" },
+    { "id": 3, "name": "투자수익", "type": "INCOME" },
+    { "id": 4, "name": "용돈", "type": "INCOME" },
+    { "id": 5, "name": "기타수입", "type": "INCOME" },
+    { "id": 6, "name": "식비", "type": "EXPENSE" },
+    { "id": 7, "name": "교통비", "type": "EXPENSE" },
+    { "id": 8, "name": "쇼핑", "type": "EXPENSE" },
+    { "id": 9, "name": "문화생활", "type": "EXPENSE" },
+    { "id": 10, "name": "의료/건강", "type": "EXPENSE" },
+    { "id": 11, "name": "교육", "type": "EXPENSE" },
+    { "id": 12, "name": "주거/통신", "type": "EXPENSE" },
+    { "id": 13, "name": "기타지출", "type": "EXPENSE" }
+  ],
+  "message": "카테고리 조회 성공"
+}
+```
+
+### Status
+
+| status | response content |
+| ------ | ---------------- |
+| 200    | 조회 성공        |
+| 401    | 인증 토큰 없음   |
+
 1. 내 정보 조회
    **엔드포인트**
 
@@ -15,17 +63,19 @@ userId: 1
 
 ### Response
 
-| key                   | 설명                 | value 타입 | 옵션 | Nullable | 예시   |
-| --------------------- | -------------------- | ---------- | ---- | -------- | ------ |
-| success               | 성공 여부            | Boolean    | -    | X        | true   |
-| data                  | 응답 데이터          | Object     | -    | X        | {}     |
-| name                  | 내 닉네임            | String     | -    | X        | 돼지   |
-| age                   | 내 나이              | Integer    | -    | X        | 25     |
-| currentPigLevel       | 내 돼지 레벨         | Integer    | -    | X        | 3      |
-| currentHouseLevel     | 내 집 레벨           | Integer    | -    | X        | 3      |
-| currentCharacterLevel | 내 집사 레벨         | Integer    | -    | X        | 2      |
-| monthlyIncome         | 내 월 소득 예측      | Long       | -    | X        | 500000 |
-| target_expense_ratio  | 내 월 목표 지출 비율 | Number     | -    | X        | 50     |
+| key                   | 설명                 | value 타입 | 옵션 | Nullable | 예시    |
+| --------------------- | -------------------- | ---------- | ---- | -------- | ------- |
+| success               | 성공 여부            | Boolean    | -    | X        | true    |
+| data                  | 응답 데이터          | Object     | -    | X        | {}      |
+| name                  | 내 닉네임            | String     | -    | X        | 돼지    |
+| age                   | 내 나이              | Integer    | -    | X        | 25      |
+| currentPigLevel       | 내 돼지 레벨         | Integer    | -    | X        | 3       |
+| currentHouseLevel     | 내 집 레벨           | Integer    | -    | X        | 3       |
+| currentCharacterLevel | 내 집사 레벨         | Integer    | -    | X        | 2       |
+| monthlyIncome         | 내 월 소득 예측      | Long       | -    | X        | 500000  |
+| targetExpenseRatio    | 내 월 목표 지출 비율 | Number     | -    | X        | 50      |
+| monthlyBudget         | 월 지출 목표 예산    | Long       | -    | X        | 1500000 |
+| dailyBudget           | 일 지출 목표 예산    | Long       | -    | X        | 48387   |
 
 **Request Example**
 
@@ -50,7 +100,9 @@ Response 200
 			  "currentHouseLevel": 3,
 			  "currentCharacterLevel": 2,
 			  "monthlyIncome": 500000,
-			  "targetExpenseRatio": 50
+			  "targetExpenseRatio": 50,
+			  "monthlyBudget": 1500000,
+			  "dailyBudget": 48387
 		  },
 		  "message": "내 정보 조회 성공"
 		}
@@ -95,12 +147,13 @@ userId: 1
 
 ### Response
 
-| key     | 설명           | value 타입 | 옵션 | Nullable | 예시                          |
-| ------- | -------------- | ---------- | ---- | -------- | ----------------------------- |
-| success | 설정 성공 여부 | boolean    |      | X        | true                          |
-| message | 응답 메시지    | string     |      | X        | “프로필 설정에 성공했습니다.” |
-| data    | 응답 데이터    | object     |      | X        |                               |
-|         |                |            |      |          |                               |
+| key                   | 설명                 | value 타입 | 옵션 | Nullable | 예시                          |
+| --------------------- | -------------------- | ---------- | ---- | -------- | ----------------------------- |
+| success               | 설정 성공 여부       | boolean    |      | X        | true                          |
+| message               | 응답 메시지          | string     |      | X        | “프로필 설정에 성공했습니다.” |
+| data                  | 응답 데이터          | object     |      | X        |                               |
+| data.monthlyBudget    | 월 지출 목표 예산    | Long       |      | X        | 1600000                       |
+| data.dailyBudget      | 일 지출 목표 예산    | Long       |      | X        | 51613                         |
 
 **Example**
 
@@ -128,7 +181,9 @@ userId: 1
     "name": "홍길동",
     "age": 23,
     "monthlyIncome": 2000000,
-    "targetExpenseRatio": 80
+    "targetExpenseRatio": 80,
+    "monthlyBudget": 1600000,
+    "dailyBudget": 51613
   }
 }
 ```
@@ -494,20 +549,23 @@ userId: 1
 
 ### Response
 
-| key              | 설명          | value 타입 | 옵션 | Nullable | 예시                       |
-| ---------------- | ------------- | ---------- | ---- | -------- | -------------------------- |
-| success          | 성공 여부     | Boolean    | -    | X        | true                       |
-| data             | 응답 데이터   | Object     | -    | X        | {}                         |
-| month            | 조회 월       | String     | -    | X        | “2026-04”                  |
-| totalIncome      | 총수입        | Long       | -    | X        | 3000000                    |
-| totalExpense     | 총지출        | Long       | -    | X        | 850000                     |
-| netIncome        | 순수익        | Long       | -    | X        | 2150000                    |
-| savingRate       | 저축률        | Number     | -    | X        | 72                         |
-| transactionCount | 거래건수      | Number     | -    | X        | 24                         |
-| avgDailyExpense  | 일평균 지출   | Long       | -    | X        | 28333                      |
-| incomeDetail     | 수입상세 목록 | Array      | -    | X        | []                         |
-| expenseDetail    | 지출상세 목록 | Array      | -    | X        | []                         |
-| message          | 응답 메시지   | String     | -    | X        | “월별 요약 통계 조회 성공” |
+| key                  | 설명                      | value 타입 | 옵션 | Nullable | 예시                       |
+| -------------------- | ------------------------- | ---------- | ---- | -------- | -------------------------- |
+| success              | 성공 여부                 | Boolean    | -    | X        | true                       |
+| data                 | 응답 데이터               | Object     | -    | X        | {}                         |
+| month                | 조회 월                   | String     | -    | X        | “2026-04”                  |
+| totalIncome          | 총수입                    | Long       | -    | X        | 3000000                    |
+| totalExpense         | 총지출                    | Long       | -    | X        | 850000                     |
+| netIncome            | 순수익                    | Long       | -    | X        | 2150000                    |
+| savingRate           | 저축률                    | Number     | -    | X        | 72                         |
+| transactionCount     | 거래건수                  | Number     | -    | X        | 24                         |
+| avgDailyExpense      | 일평균 지출               | Long       | -    | X        | 28333                      |
+| monthlyBudget        | 월 지출 목표 예산         | Long       | -    | X        | 1500000                    |
+| budgetUsedPercent    | 예산 대비 지출률          | Number     | -    | X        | 57                         |
+| recommendDailyBudget | 남은 기간 하루 권장 지출  | Long       | -    | X        | 21667                      |
+| incomeDetail         | 수입상세 목록             | Array      | -    | X        | []                         |
+| expenseDetail        | 지출상세 목록             | Array      | -    | X        | []                         |
+| message              | 응답 메시지               | String     | -    | X        | “월별 요약 통계 조회 성공” |
 
 ### incomeDetail / expenseDetail
 
@@ -532,6 +590,9 @@ userId: 1
     "savingRate": 72,
     "transactionCount": 24,
     "avgDailyExpense": 28333,
+    "monthlyBudget": 1500000,
+    "budgetUsedPercent": 57,
+    "recommendDailyBudget": 21667,
     "incomeDetail": [
       {
         "category": {
