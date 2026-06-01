@@ -186,7 +186,8 @@ export function usePigSystem() {
     return `${parseInt(month)}월 ${parseInt(day)}일`;
   }
 
-  function getCharacterGuideMessage(character, recommendDailyBudget) {
+  function getCharacterGuideMessage(character, recommendDailyBudget, monthlyBudget) {
+    if (!monthlyBudget) return '예산을 설정하면\n가이드를 드릴게요!';
     if (!character) return '데이터가 없어요.';
 
     const fmt = (n) => new Intl.NumberFormat('ko-KR').format(n);

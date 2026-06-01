@@ -34,7 +34,11 @@ const activeBubble = ref(null) // 'pig' | 'character' | null
 const pigBubbleText = computed(() => getPigMessage(pigState.value.level))
 
 const characterBubbleText = computed(() =>
-  getCharacterGuideMessage(character.value, store.summary?.recommendDailyBudget ?? 0)
+  getCharacterGuideMessage(
+    character.value,
+    store.summary?.recommendDailyBudget ?? 0,
+    store.summary?.monthlyBudget ?? 0,
+  )
 )
 
 function togglePigBubble() {
