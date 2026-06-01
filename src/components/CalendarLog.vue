@@ -17,7 +17,7 @@ const dailySummaries = ref([]);
 async function loadDailySummary() {
   try {
     const res = await getDailySummary(props.selectedMonth);
-    dailySummaries.value = Array.isArray(res.data?.data) ? res.data.data : (Array.isArray(res.data) ? res.data : []);
+    dailySummaries.value = res.data.data ?? [];
   } catch (e) {
     console.error('CalendarLog 일별 통계 조회 실패', e);
     dailySummaries.value = [];

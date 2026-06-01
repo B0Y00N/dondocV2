@@ -23,7 +23,7 @@ const summaryData = ref(null);
 async function loadSummary() {
   try {
     const res = await getSummary(props.selectedMonth);
-    const raw = res.data?.data ?? res.data ?? null;
+    const raw = res.data.data;
     summaryData.value = Array.isArray(raw) ? (raw[0] ?? null) : raw;
   } catch (e) {
     console.error('Summary 조회 실패', e);

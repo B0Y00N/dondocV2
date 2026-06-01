@@ -16,7 +16,7 @@ const closingData = ref(null)
 async function loadClosing() {
   try {
     const res = await getClosing(props.selectedMonth)
-    const raw = res.data?.data ?? res.data ?? null
+    const raw = res.data.data
     closingData.value = Array.isArray(raw) ? (raw[0] ?? null) : raw
   } catch (e) {
     console.error('MonthlyLog 결산 조회 실패', e)

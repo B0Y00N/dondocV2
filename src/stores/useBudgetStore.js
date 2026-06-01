@@ -31,8 +31,8 @@ export const useBudgetStore = defineStore('budget', () => {
     try {
       loading.value = true;
       const res = await getDetail(yearMonth ?? currentMonth.value, type);
-      const detail = res.data?.data;
-      records.value = Array.isArray(detail?.records) ? detail.records : (Array.isArray(detail) ? detail : (Array.isArray(res.data) ? res.data : []));
+      const payload = res.data.data;
+      records.value = Array.isArray(payload?.records) ? payload.records : (payload ?? []);
     } catch (e) {
       error.value = '거래 내역 조회 실패';
       console.error(e);
@@ -44,8 +44,8 @@ export const useBudgetStore = defineStore('budget', () => {
   async function fetchSummary(month) {
     try {
       const res = await getSummary(month ?? currentMonth.value);
-      const raw = res.data?.data ?? res.data;
-      summary.value = Array.isArray(raw) ? raw[0] : raw;
+      const raw = res.data.data;
+      summary.value = Array.isArray(raw) ? (raw[0] ?? null) : raw;
     } catch (e) {
       console.error('요약 조회 실패', e);
     }
@@ -55,7 +55,7 @@ export const useBudgetStore = defineStore('budget', () => {
     try {
       loading.value = true;
       const res = await createRecord(payload);
-      const record = res.data?.data ?? res.data;
+      const record = res.data.data;
       records.value = [record, ...records.value];
       return record;
     } catch (e) {
@@ -71,7 +71,7 @@ export const useBudgetStore = defineStore('budget', () => {
     try {
       loading.value = true;
       const res = await apiUpdateRecord(id, payload);
-      const updated = res.data?.data ?? res.data;
+      const updated = res.data.data;
       records.value = records.value.map((r) => (r.id === id ? updated : r));
       return updated;
     } catch (e) {

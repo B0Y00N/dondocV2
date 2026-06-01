@@ -42,7 +42,7 @@ export const useAuthStore = defineStore(
     async function updateProfile(updates) {
       if (!currentUser.value) throw new Error('로그인 정보가 없어요');
       const res = await updateMe(updates);
-      const updated = res.data?.data ?? res.data;
+      const updated = res.data.data;
       currentUser.value = { ...currentUser.value, ...updated };
       return currentUser.value;
     }
