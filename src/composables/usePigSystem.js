@@ -186,24 +186,15 @@ export function usePigSystem() {
     return `${parseInt(month)}월 ${parseInt(day)}일`;
   }
 
-  function getCharacterGuideMessage(character, monthlyExpense, dailyBudget, currentMonth) {
-    if (!dailyBudget || dailyBudget <= 0) return '예산을 설정하면\n가이드를 드릴게요!';
+  function getCharacterGuideMessage(character, recommendDailyBudget) {
     if (!character) return '데이터가 없어요.';
-
-    const [year, month] = currentMonth.split('-').map(Number);
-    const totalDays = new Date(year, month, 0).getDate();
-    const today = new Date();
-    const remainDays = totalDays - today.getDate();
-    const monthlyBudget = dailyBudget * totalDays;
-    const remainBudget = monthlyBudget - monthlyExpense;
-    const recommendPerDay = remainDays > 0 ? Math.floor(remainBudget / remainDays) : 0;
 
     const fmt = (n) => new Intl.NumberFormat('ko-KR').format(n);
 
     const stageGuides = {
       good: `지금 페이스면 이번 달\n예산 안에서 끝낼 수 있어요!`,
       neutral: `조금만 더 아끼면\n다음 달 집이 업그레이드돼요.`,
-      bad: `지출 속도가 너무 빨라요!\n하루 ${fmt(Math.max(recommendPerDay, 0))}원 이하로 줄여야 해요.`,
+      bad: `지출 속도가 너무 빨라요!\n하루 ${fmt(Math.max(recommendDailyBudget ?? 0, 0))}원 이하로 줄여야 해요.`,
     };
 
     return `${character.name}\n\n${stageGuides[character.effect]}`;

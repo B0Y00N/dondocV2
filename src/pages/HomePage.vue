@@ -21,11 +21,10 @@ onMounted(async () => {
   ]);
 });
 
-// 월별 요약 — API에서 받아옴 (GET /records/summary)
+// 월별 요약 — GET /records/summary 응답
 const monthlyTotalExpense = computed(() => store.summary?.totalExpense ?? 0);
 const monthlyTotalIncome = computed(() => store.summary?.totalIncome ?? 0);
 const monthlyNetIncome = computed(() => store.summary?.netIncome ?? 0);
-// API 명세 추가 필요: summary에 monthlyBudget, budgetUsedPercent 추가 요청
 const monthlyBudget = computed(() => store.summary?.monthlyBudget ?? 0);
 const monthlyProgress = computed(() => store.summary?.budgetUsedPercent ?? 0);
 
@@ -35,7 +34,7 @@ const activeBubble = ref(null) // 'pig' | 'character' | null
 const pigBubbleText = computed(() => getPigMessage(pigState.value.level))
 
 const characterBubbleText = computed(() =>
-  getCharacterGuideMessage(character.value, monthlyTotalExpense.value, dailyBudget.value, store.currentMonth)
+  getCharacterGuideMessage(character.value, store.summary?.recommendDailyBudget ?? 0)
 )
 
 function togglePigBubble() {
@@ -80,10 +79,9 @@ const pigVisualScale = computed(() => {
 const currentHouseLevel = computed(() => authStore.currentUser?.currentHouseLevel ?? 3);
 const houseInfo = computed(() => getHouseInfo(currentHouseLevel.value));
 
-// 일별 예산 — API 명세 추가 필요: GET /users/me에 dailyBudget 추가 요청
+// 일별 예산 — GET /users/me 응답
 const dailyBudget = computed(() => authStore.currentUser?.dailyBudget ?? 0);
 
-// 오늘 진행률 — API 값으로 계산하는 표시용 연산
 const todayProgressPercent = computed(() => {
   if (!dailyBudget.value) return 0;
   return Math.round((store.todayExpense / dailyBudget.value) * 100);

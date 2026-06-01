@@ -382,7 +382,8 @@
         }
       ],
       "monthlyBudget": 1500000,
-      "budgetUsedPercent": 16
+      "budgetUsedPercent": 16,
+      "recommendDailyBudget": 0
     },
     {
       "id": 2,
@@ -446,7 +447,8 @@
         }
       ],
       "monthlyBudget": 1500000,
-      "budgetUsedPercent": 57
+      "budgetUsedPercent": 57,
+      "recommendDailyBudget": 0
     }
   ],
   "dailySummaries": [
