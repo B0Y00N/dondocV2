@@ -17,6 +17,7 @@ const form = ref({
   categoryId: null,
   amount: '',
   description: '',
+  memo: '',
 });
 
 watch(
@@ -29,6 +30,7 @@ watch(
         categoryId: rec.categoryId ?? rec.category?.id ?? null,
         amount: rec.amount,
         description: rec.description || '',
+        memo: rec.memo || '',
       };
     }
   },
@@ -68,6 +70,7 @@ async function handleSubmit() {
     categoryId: form.value.categoryId,
     amount: Number(form.value.amount),
     description: form.value.description,
+    memo: form.value.memo,
   };
 
   try {
@@ -157,13 +160,25 @@ async function handleSubmit() {
 
         <!-- 내용 -->
         <div class="form-group">
-          <label>내용 <span class="optional"></span></label>
+          <label>내용</label>
           <input
             type="text"
             v-model="form.description"
             class="form-input"
             placeholder="내용을 입력하세요"
             maxlength="50"
+          />
+        </div>
+
+        <!-- 메모 -->
+        <div class="form-group">
+          <label>메모 <span class="optional">(선택)</span></label>
+          <input
+            type="text"
+            v-model="form.memo"
+            class="form-input"
+            placeholder="추가 메모를 입력하세요"
+            maxlength="100"
           />
         </div>
 
